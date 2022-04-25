@@ -36,12 +36,7 @@ namespace RabbitMQApp.Sender
                 {
                     Thread.Sleep(500);
                     string releaseDate = DateTime.Now.AddMonths(-i).ToString();
-                    string strBookJson = @"{_Id': '6260e73bc363928f414c7765',
-                                            'id': "+ (100 + i) + @",
-                                            'title': 'DotNet Design Pattersn',
-                                            'releaseDate': "+ releaseDate + @",
-                                            'price': 66.66,
-                                            'author': 'Tim Tuckey'}";
+                    string strBookJson = "{_Id': '6260e73bc363928f414c7765','id': "+ (100 + i) + ",'title': 'DotNet Design Pattersn', 'releaseDate': "+ releaseDate + ",'price': 66.66,'author': 'Tim Tuckey'}";
 
                     var body = Encoding.UTF8.GetBytes(strBookJson);
                     channel.BasicPublish(exchange: "",
