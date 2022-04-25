@@ -34,7 +34,7 @@ namespace RabbitMQApp.Sender
                 //place messages at interval of 500ms to the queue
                 for (int i = 0; i < 30; i++)
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(3000);
                     string releaseDate = DateTime.Now.AddMonths(-i).ToString();
                     string strBookJson = "{_Id': '6260e73bc363928f414c7765','id': "+ (100 + i) + ",'title': 'DotNet Design Pattersn', 'releaseDate': "+ releaseDate + ",'price': 66.66,'author': 'Tim Tuckey'}";
 
