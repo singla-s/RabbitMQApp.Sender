@@ -8,9 +8,7 @@ namespace RabbitMQApp.Sender
     internal class SenderApp
     {
         static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-
+        { 
             //open a connection to RabbitMQ Server on the destination machine
             var factory = new ConnectionFactory()
             {
@@ -37,8 +35,13 @@ namespace RabbitMQApp.Sender
                 for (int i = 0; i < 30; i++)
                 {
                     Thread.Sleep(500);
-                    string ReleaseDate = DateTime.Now.AddMonths(-i).ToString();
-                    string strBookJson = @"{}";
+                    string releaseDate = DateTime.Now.AddMonths(-i).ToString();
+                    string strBookJson = @"{_Id': '6260e73bc363928f414c7765',
+                                            'id': "+ (100 + i) + @",
+                                            'title': 'DotNet Design Pattersn',
+                                            'releaseDate': "+ releaseDate + @",
+                                            'price': 66.66,
+                                            'author': 'Tim Tuckey'}";
 
                     var body = Encoding.UTF8.GetBytes(strBookJson);
                     channel.BasicPublish(exchange: "",
@@ -46,7 +49,7 @@ namespace RabbitMQApp.Sender
                         basicProperties: null,
                         body: body
                         );
-                    Console.WriteLine($"New Book published with id: {(100 + i)} :\t Published Date: {ReleaseDate}");
+                    Console.WriteLine($"New Book published with id: {(100 + i)} :\t Published Date: {releaseDate}");
                 }
             }
         }
